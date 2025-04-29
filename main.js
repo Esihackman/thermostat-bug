@@ -151,9 +151,9 @@ const warmOverlay= `linear-gradient(
 const coolOverlay = `linear-gradient(to bottom, rgba(236, 96, 98, 0.2), rgba(248, 210, 211, 0.13))`;
 
 const setInitialOverlay = () => {
-  document.querySelector(
-    ".room"
-  ).style.backgroundImage = `url('${rooms[0].image}')`;
+  // document.querySelector(
+  //   ".room"
+  // ).style.backgroundImage = `url('${rooms[0].image}')`;
 
   document.querySelector(".room").style.backgroundImage = `${
     rooms[0].currTemp < 25 ? coolOverlay : warmOverlay
@@ -203,7 +203,7 @@ document.querySelector(".currentTemp").innerText = `${rooms[0].currTemp}°`;
 // Add new options from rooms array
 rooms.forEach((room) => {
   const option = document.createElement("option");
-  option.value = room;
+  option.value = room.name;
   option.textContent = room.name;
   roomSelect.appendChild(option);
 });
@@ -240,10 +240,11 @@ defaultSettings.addEventListener("click", function (e) {});
 // Increase and decrease temperature
 document.getElementById("increase").addEventListener("click", () => {
   const room = rooms.find((currRoom) => currRoom.name === selectedRoom);
-  const increaseRoomTemperature = room.increaseTemp;
+  const increaseRoomTemperature = room.increaseTemp();
 
   if (room.currTemp < 32) {
-    increaseRoomTemperature();
+    increaseRoomTemperature;
+    // room.increaseTemp()
   }
 
   setIndicatorPoint(room.currTemp);
@@ -261,10 +262,10 @@ document.getElementById("increase").addEventListener("click", () => {
 
 document.getElementById("reduce").addEventListener("click", () => {
   const room = rooms.find((currRoom) => currRoom.name === selectedRoom);
-  const decreaseRoomTemperature = room.decreaseTemp;
+  const decreaseRoomTemperature = room.decreaseTemp();
 
   if (room.currTemp > 10) {
-    decreaseRoomTemperature();
+    decreaseRoomTemperature()  ;
   }
 
   setIndicatorPoint(room.currTemp);
