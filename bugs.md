@@ -41,6 +41,6 @@ Bug 7
 Location:
 Type of bug:The room status message displayed incorrect text that didn't match the expected temperature control behavior
 Identification method:Code inspection and analysis of application behavior and temperature control logic
-Fix:Change the comparison operator from > to < to correctly display status messages that match the temperature control logic
+Fix:Change the comparison operator from > to < to correctly display status messages that match the temperature control logic and also swapped the cooling room and warming room
 
 Bug 8
