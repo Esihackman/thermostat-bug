@@ -234,8 +234,30 @@ roomSelect.addEventListener("change", function () {
 
 
 // Set preset temperatures
-const defaultSettings = document.querySelector(".default-settings");
-defaultSettings.addEventListener("click", function (e) {});
+const defaultSettings = document.querySelector(".default-settings");  
+defaultSettings.addEventListener("click", function (e) {
+  if (e.target.id === "cool") {
+    const room = rooms.find((currRoom) => currRoom.name === selectedRoom);
+    room.setCurrTemp(room.coldPreset);
+    
+    setIndicatorPoint(room.currTemp);
+    currentTemp.textContent = `${room.currTemp}°`;
+    document.querySelector(".currentTemp").innerText = `${room.currTemp}°`;
+    
+    setOverlay(room);
+    generateRooms();
+  } else if (e.target.id === "warm") {
+    const room = rooms.find((currRoom) => currRoom.name === selectedRoom);
+    room.setCurrTemp(room.warmPreset);
+    
+    setIndicatorPoint(room.currTemp);
+    currentTemp.textContent = `${room.currTemp}°`;
+    document.querySelector(".currentTemp").innerText = `${room.currTemp}°`;
+    
+    setOverlay(room);
+    generateRooms();
+  }
+});
 
 // Increase and decrease temperature
 document.getElementById("increase").addEventListener("click", () => {
@@ -265,7 +287,7 @@ document.getElementById("reduce").addEventListener("click", () => {
   const decreaseRoomTemperature = room.decreaseTemp();
 
   if (room.currTemp > 10) {
-    decreaseRoomTemperature()  ;
+    decreaseRoomTemperature;
   }
 
   setIndicatorPoint(room.currTemp);
@@ -346,12 +368,12 @@ const generateRooms = () => {
           </div>
 
           ${displayTime(room)}
-         
+           
           <span class="room-status" style="display: ${
-            room.airConditionerOn ? "" : "none"
-          }">${room.currTemp > 25 ? "Cooling room to: " : "Warming room to: "}${
-      room.currTemp
-    }°</span>
+  room.airConditionerOn ? "" : "none"
+}">${room.currTemp < 25 ? "Warming room to: " : "Cooling room to: "}${
+  room.currTemp
+}°</span>
         </div>
     `;
   });
