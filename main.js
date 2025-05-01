@@ -143,7 +143,7 @@ const rooms = [
     },
   },
 ];
-// last bug
+
 const  coolOverlay = `linear-gradient(
     to bottom,
     rgba(141, 158, 247, 0.2),
@@ -413,7 +413,7 @@ const generateRooms = () => {
               <ion-icon name="power-outline" class="${
                 room.airConditionerOn ? "powerOn" : ""
               }"></ion-icon>
-            </button>8
+            </button>
           </div>
 
           ${displayTime(room)}
@@ -579,7 +579,7 @@ saveRoomButton.addEventListener("click", () => {
   // Refresh the UI
   generateRooms();
 
-    // ✅ Show success toast
+    // Show success toast
     Toastify({
       text: "Room added successfully!",
       duration: 3000,
@@ -589,6 +589,7 @@ saveRoomButton.addEventListener("click", () => {
       backgroundColor: "#ffae33",
       stopOnFocus: true
     }).showToast();
+
   // Clear inputs and close modal
   roomNameInput.value = "";
   initialTempInput.value = "";
@@ -645,8 +646,9 @@ document.getElementById("turnOnAllAC").addEventListener("click", () => {
 //     }
 //   });
 
-  generateRooms(); // Refresh UI
+  // generateRooms(); // Refresh UI
 
 
-// ✅ Check every minute
+// Check every minute
 //setInterval(checkRoomSchedules, 60000);
+
