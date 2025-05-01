@@ -160,13 +160,15 @@ const setInitialOverlay = () => {
   document.querySelector(".room").style.backgroundImage = `${
     rooms[0].currTemp < 25 ? coolOverlay : warmOverlay
   }, url('${rooms[0].image}')`;
+  //document.querySelector(".schedule-time").innerText = `${rooms[0].startTime} - ${rooms[0].endTime}`;
+
 };
 
-const setOverlay = (room) => {
-  document.querySelector(".room").style.backgroundImage = `${
-    room.currTemp < 25 ? coolOverlay : warmOverlay
-  }, url('${room.image}')`;
-};
+// const setOverlay = (room) => {
+//   document.querySelector(".room").style.backgroundImage = `${
+//     room.currTemp < 25 ? coolOverlay : warmOverlay
+//   }, url('${room.image}')`;
+// };
 
 // Set svg accordingly
 const svgPoint = document.querySelector(".point");
@@ -202,10 +204,12 @@ currentTemp.textContent = `${rooms[0].currTemp}°`;
 setInitialOverlay();
 
 document.querySelector(".currentTemp").innerText = `${rooms[0].currTemp}°`;
+
+
 // Add new options from rooms array
 rooms.forEach((room) => {
   const option = document.createElement("option");
-  //first change
+  
   option.value = room.name;
   console.log(option.value)
   option.textContent = room.name;
@@ -228,6 +232,7 @@ const setSelectedRoom = (selectedRoom) => {
   document.querySelector(".room-name").innerText = selectedRoom;
 
   document.querySelector(".currentTemp").innerText = `${room.currTemp}°`;
+  document.querySelector(".schedule-time").innerText = `${room.startTime} - ${room.endTime}`;
 };
 
 roomSelect.addEventListener("change", function () {
@@ -408,7 +413,7 @@ const generateRooms = () => {
               <ion-icon name="power-outline" class="${
                 room.airConditionerOn ? "powerOn" : ""
               }"></ion-icon>
-            </button>
+            </button>8
           </div>
 
           ${displayTime(room)}
@@ -607,41 +612,41 @@ document.getElementById("turnOnAllAC").addEventListener("click", () => {
   generateRooms(); // Refresh the UI to reflect changes
 });
 
-// Auto-scheduling logic
-function checkRoomSchedules() {
-  const now = new Date();
-  const currentTime = now.toTimeString().slice(0, 5); 
+// // Auto-scheduling logic
+// function checkRoomSchedules() {
+//   const now = new Date();
+//   const currentTime = now.toTimeString().slice(0, 5); 
 
-  rooms.forEach((room) => {
-    if (room.startTime === currentTime && !room.airConditionerOn) {
-      room.toggleAircon();
-      console.log(`${room.name} AC turned ON at ${currentTime}`);
-      Toastify({
-        text: `${room.name} AC turned ON automatically at ${currentTime}`,
-        duration: 3000,
-        gravity: "top",
-        position: "right",
-        backgroundColor: "#009c4a",
-        stopOnFocus: true,
-      }).showToast();
-    }
+//   rooms.forEach((room) => {
+//     if (room.startTime === currentTime && !room.airConditionerOn) {
+//       room.toggleAircon();
+//       console.log(`${room.name} AC turned ON at ${currentTime}`);
+//       Toastify({
+//         text: `${room.name} AC turned ON automatically at ${currentTime}`,
+//         duration: 3000,
+//         gravity: "top",
+//         position: "right",
+//         backgroundColor: "#009c4a",
+//         stopOnFocus: true,
+//       }).showToast();
+//     }
 
-    if (room.endTime === currentTime && room.airConditionerOn) {
-      room.toggleAircon();
-      console.log(`${room.name} AC turned OFF at ${currentTime}`);
-      Toastify({
-        text: `${room.name} AC turned OFF automatically at ${currentTime}`,
-        duration: 3000,
-        gravity: "top",
-        position: "right",
-        backgroundColor: "#e63946",
-        stopOnFocus: true,
-      }).showToast();
-    }
-  });
+//     if (room.endTime === currentTime && room.airConditionerOn) {
+//       room.toggleAircon();
+//       console.log(`${room.name} AC turned OFF at ${currentTime}`);
+//       Toastify({
+//         text: `${room.name} AC turned OFF automatically at ${currentTime}`,
+//         duration: 3000,
+//         gravity: "top",
+//         position: "right",
+//         backgroundColor: "#e63946",
+//         stopOnFocus: true,
+//       }).showToast();
+//     }
+//   });
 
   generateRooms(); // Refresh UI
-}
+
 
 // ✅ Check every minute
-setInterval(checkRoomSchedules, 60000);
+//setInterval(checkRoomSchedules, 60000);
