@@ -1,4 +1,4 @@
-// src/thermostat.js
+
 
 // Function to set the selected room data to the UI
 function setSelectedRoom(roomData) {
@@ -18,7 +18,7 @@ function setOverlay(rooms) {
   rooms.forEach(room => {
     const roomElement = document.querySelector('.room');
     if (roomElement) {
-      const backgroundImage = room.currentTemp > 70 ? 'warm-bg.jpg' : 'cool-bg.jpg';
+      const backgroundImage = room.currentTemp > 32 ? 'warm-bg.jpg' : 'cool-bg.jpg';
       roomElement.style.backgroundImage = `url(${backgroundImage})`;
     }
   });

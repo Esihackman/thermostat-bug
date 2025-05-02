@@ -26,7 +26,7 @@ describe('DOM Interaction Tests for Smart Thermostat', () => {
   test('setSelectedRoom updates UI elements with room data', () => {
     const roomData = {
       name: 'Living Room',
-      currentTemp: 72,
+      currentTemp: 32,
       schedule: { time: '18:00' }
     };
 
@@ -39,8 +39,8 @@ describe('DOM Interaction Tests for Smart Thermostat', () => {
 
   test('setOverlay sets background image based on temperature', () => {
     const rooms = [
-      { name: 'Living Room', currentTemp: 72 },
-      { name: 'Bedroom', currentTemp: 68 }
+      { name: 'Living Room', currentTemp: 32 },
+      { name: 'Bedroom', currentTemp: 27 }
     ];
 
     setOverlay(rooms);
