@@ -164,11 +164,11 @@ const setInitialOverlay = () => {
 
 };
 
-// const setOverlay = (room) => {
-//   document.querySelector(".room").style.backgroundImage = `${
-//     room.currTemp < 25 ? coolOverlay : warmOverlay
-//   }, url('${room.image}')`;
-// };
+const setOverlay = (room) => {
+  document.querySelector(".room").style.backgroundImage = `${
+    room.currTemp < 25 ? coolOverlay : warmOverlay
+  }, url('${room.image}')`;
+};
 
 // Set svg accordingly
 const svgPoint = document.querySelector(".point");
@@ -232,7 +232,7 @@ const setSelectedRoom = (selectedRoom) => {
   document.querySelector(".room-name").innerText = selectedRoom;
 
   document.querySelector(".currentTemp").innerText = `${room.currTemp}°`;
-  document.querySelector(".schedule-time").innerText = `${room.startTime} - ${room.endTime}`;
+  // document.querySelector(".schedule-time").innerText = `${room.startTime} - ${room.endTime}`;
 };
 
 roomSelect.addEventListener("change", function () {
@@ -586,7 +586,7 @@ saveRoomButton.addEventListener("click", () => {
       close: true,
       gravity: "top",
       position: "right",
-      backgroundColor: "#ffae33",
+      background: "#ffae33",
       stopOnFocus: true
     }).showToast();
 
